@@ -20,6 +20,7 @@ If a `REGRESSIONS.md` file exists at the repo root, read it before coding. It co
 - Identify which past regressions are in the same area as the current change.
 - Explicitly re-verify those specific scenarios after your change.
 - If you fix a new bug during this update, add an entry to `REGRESSIONS.md` with: date, what broke, root cause, how it was fixed, and a one-line scenario to re-test in the future.
+- **Accessibility regressions count as bugs.** A failed contrast ratio, a broken keyboard flow, a silent screen reader update, a missing label, or any other WCAG 2.2 AA failure (per `accessibility-guardrails.md`) is logged the same way and re-verified on every relevant future change. Tag the entry with `[a11y]` so the area is greppable.
 
 If `REGRESSIONS.md` does not exist and the project is more than a prototype, create it.
 

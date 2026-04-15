@@ -80,7 +80,7 @@ If you build a list, table, or detail view without all five states, you're not d
 
 ## 9. Accessibility Floor (Always Apply)
 
-These are non-negotiable, not nice-to-haves.
+These are non-negotiable, not nice-to-haves. They are the **minimum** — the full standard lives in `accessibility-guardrails.md` (WCAG 2.2 AA, the POUR principles, conditional sections for forms, media, custom widgets, and the AT test matrix). Load that file alongside this one for any user-facing project.
 
 - **Color contrast meets WCAG AA.** 4.5:1 for body text, 3:1 for large text. Use a contrast checker, don't eyeball it.
 - **Keyboard navigation works for everything.** Tab order is logical. Focus is always visible. No keyboard traps.

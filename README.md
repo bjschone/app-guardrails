@@ -12,8 +12,9 @@ These files exist to externalize the things I'd otherwise have to remember on ev
 | `qa-standards.md` | QA and regression-prevention standards. Blast radius checks, CRUD coverage, functional verification, regression log. | **Always** |
 | `ai-coding-guardrails.md` | Rules for *how* the AI assistant works with me. Plan-before-coding, scope discipline, no faking, confirmation triggers. | **Always** |
 | `ux-guardrails.md` | UI/UX standards. Complexity budget, five-states rule, accessibility floor, copy and microcopy. | Any project with a UI |
+| `accessibility-guardrails.md` | Accessibility standards aligned with W3C WAI / WCAG 2.2 AA. POUR principles, conditional sections (forms, media, custom widgets), AT test matrix, end-of-task checklist. | Any project with a UI |
 
-The first three are the **core set** — load them on every project. `ux-guardrails.md` is opt-in but should be loaded for anything user-facing.
+The first three are the **core set** — load them on every project. `ux-guardrails.md` and `accessibility-guardrails.md` are opt-in but should be loaded together for anything user-facing.
 
 ## How to deploy
 
@@ -23,7 +24,7 @@ The first three are the **core set** — load them on every project. `ux-guardra
 
 ```bash
 mkdir -p ~/.claude
-cat build-standards.md qa-standards.md ai-coding-guardrails.md ux-guardrails.md > ~/.claude/CLAUDE.md
+cat build-standards.md qa-standards.md ai-coding-guardrails.md ux-guardrails.md accessibility-guardrails.md > ~/.claude/CLAUDE.md
 ```
 
 **Per-project** — for project-specific overrides or additions:
@@ -44,6 +45,7 @@ Follow all standards in:
 - ./qa-standards.md
 - ./ai-coding-guardrails.md
 - ./ux-guardrails.md
+- ./accessibility-guardrails.md
 
 ## Project-specific context
 - Stack: [e.g. Next.js + Supabase]
@@ -94,6 +96,7 @@ The point of this repo is that **it gets sharper over time**. Every time I:
 - Get burned by a security oversight → add a rule to `build-standards.md`
 - Watch Claude go off the rails → add a rule to `ai-coding-guardrails.md`
 - Notice UX drift in something I built → add a rule to `ux-guardrails.md`
+- Catch an accessibility gap (failed contrast, broken keyboard flow, silent screen reader) → add a rule to `accessibility-guardrails.md`
 
 After six months of use, this repo encodes hundreds of hours of hard-won lessons that I never have to learn twice.
 
