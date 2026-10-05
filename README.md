@@ -6,6 +6,8 @@ You size the project once, before any code gets written. Then the skill holds a 
 
 I built this because AI-generated code fails in predictable ways: swallowed async errors, hardcoded secrets, missing ownership checks, packages that don't exist, and architecture that drifts as a long session wears on. I've used it on every project I've built with Claude since. It hasn't let me down, and it means every project starts with good bones.
 
+![App Guardrails infographic: sizing, the 11-rule floor, tier rules, audits, and the UX, accessibility, and LLM modules](assets/app-guardrails-infographic.png)
+
 ## Install
 
 ### Claude Code (plugin)
