@@ -1,4 +1,4 @@
-# App Guardrails
+# [![App Guardrails](assets/app-guardrails-banner.png)](assets/app-guardrails-infographic.png)
 
 A Claude skill for building apps at the right level of rigor - no more, no less.
 
@@ -6,9 +6,7 @@ You size the project once, before any code gets written. Then the skill holds a 
 
 I built this because AI-generated code fails in predictable ways: swallowed async errors, hardcoded secrets, missing ownership checks, packages that don't exist, and architecture that drifts as a long session wears on. I've used it on every project I've built with Claude since. It hasn't let me down, and it means every project starts with good bones.
 
-[![App Guardrails: 3 project sizes, 11 floor rules, 1/3/6 audit passes, 7 reference files, 9 cited sources](assets/app-guardrails-banner.png)](assets/app-guardrails-infographic.png)
-
-Click the banner for the [full infographic](assets/app-guardrails-infographic.png).
+Want the whole picture first? See the [full infographic](assets/app-guardrails-infographic.png).
 
 ## Install
 
