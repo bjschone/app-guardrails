@@ -80,8 +80,8 @@ distributed across the passes.
 
 ### Pass C - Security
 
-- Secrets scan (Sweep item 1, full depth - include env example files, which AI populates
-  with real values).
+- Secrets scan (Sweep item 1, full depth - include env example files, which are easy to
+  fill with real values by accident).
 - Injection surfaces (Sweep item 2, every entry point).
 - **Authorization completeness.** Map every route/endpoint. For each: (a) server-side
   auth enforced? (b) resource-level ownership verified? (c) tokens validated for
@@ -152,7 +152,7 @@ Semantic errors - code that's syntactically fine and logically wrong:
 - **Duplication scan.** 10+ line blocks appearing more than once - each is a future
   half-patched vulnerability.
 - **Complexity flags.** Flag functions past cyclomatic ~10 / cognitive ~15 for review -
-  they're systematically under-tested relative to their branch count - but judge by
+  more branches means more paths to test and more places for one to go untested - but judge by
   whether the function is hard to reason about, not by the number alone. Also flag the
   opposite smell: logic shredded into fragments to duck a threshold.
 - **Test quality, not test count.** Classify tests: behavioral (assert specific
@@ -163,8 +163,9 @@ Semantic errors - code that's syntactically fine and logically wrong:
 
 ### Pass 6 - Iterative regression (the AI-specific pass)
 
-The pass that exists because iteration degrades security (~37.6% more critical
-vulnerabilities over five refinement cycles):
+The pass that exists because iteration can degrade security (one IEEE-ISTAS 2025 study
+measured 37.6% more critical vulnerabilities after five unreviewed AI refinement rounds -
+see tier-large.md):
 
 - **Before/after on security-sensitive changes.** For every modification to auth,
   validation, crypto, or session code: compare against the prior version. Did the

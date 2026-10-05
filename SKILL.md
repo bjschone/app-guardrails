@@ -41,7 +41,7 @@ Then read the matching tier file:
 - **Medium** → `references/tier-medium.md`
 - **Large** → `references/tier-large.md`
 
-Two more files load on their own triggers:
+Three more files load on their own triggers:
 
 - **`references/ux.md`** - read it for any project with a user-facing UI, at every
   size. UX drift starts on day one; the complexity budget and five-states rule are what
@@ -50,8 +50,9 @@ Two more files load on their own triggers:
   and Large, or at any size when the user asks. At Small, the floor's accessibility basics
   plus ux.md's accessibility floor section cover it.
 - **`references/llm.md`** - read it whenever the app calls an LLM, runs agents or
-  tools, or processes AI-generated content, at every size. Prompt injection is becoming
-  the new SQL injection, and none of the classic guardrails cover it.
+  tools, or processes AI-generated content, at every size. Prompt injection is #1
+  on the OWASP Top 10 for LLM Applications (2025), and none of the classic guardrails
+  cover it.
 
 Audit instructions for all sizes live in `references/audits.md` - read it when an audit
 pass comes due, not before.
@@ -77,41 +78,46 @@ these down.
    ship half-configured.
 3. **No user input concatenated into queries, commands, paths, or outbound requests.**
    Parameterized queries, safe APIs, or explicit escaping - every time, even when input
-   "looks clean," even when the rest of the file already does it right. Regression to
-   string interpolation in new code is a documented AI failure mode. The same rule
+   "looks clean," even when the rest of the file already does it right. Models don't
+   pick the safe option by default: Veracode's 2025 test of 100+ LLMs found they chose
+   the insecure approach in 45% of tasks and failed to prevent XSS 86% of the time. The same rule
    covers SSRF: never fetch a user-supplied URL server-side without validating the
    destination against an allowlist - an endpoint that takes a URL and fetches it is a
    probe into your internal network.
 4. **Authorization is designed, not assumed.** If the app has accounts, every endpoint
    answers four questions: who can call this, who owns this resource, what actions are
-   allowed, and what happens when the check fails. AI reliably writes authentication and
-   forgets authorization - the login exists, the ownership check doesn't. Missing
-   resource-level checks (IDOR) are the single most common critical vulnerability in
-   AI-generated code and invisible to casual review. All checks server-side; session
+   allowed, and what happens when the check fails. Authentication is visible - nothing
+   works without a login - so it gets built. Authorization isn't: a missing ownership
+   check (IDOR) breaks nothing in a demo, so it's easy to skip and easy to miss in
+   review. Broken access control is #1 on the OWASP Top 10, in both 2021 and 2025.
+   All checks server-side; session
    cookies are `HttpOnly`, `Secure`, and `SameSite`.
 5. **Async errors propagate a real signal.** Every async operation has a handler, and
    every catch block does one of: rethrow, return a typed fallback, call a central
    handler, or surface an error state. Catch-log-return-undefined is forbidden - it
-   makes the caller crash somewhere else, later, mysteriously.
+   makes the caller crash somewhere else, later, mysteriously. OWASP added
+   "Mishandling of Exceptional Conditions" as a new Top 10 category in 2025.
 6. **Know your trust boundaries; validate at every one.** Name them before building:
    browser ↔ server, server ↔ database, server ↔ third-party APIs, anything ↔ LLM.
    Never trust data crossing a boundary - type, null, and range checks live at the
-   boundary itself, not deep in the stack, not never. Most security bugs are a trust
-   boundary someone forgot they had.
+   boundary itself, not deep in the stack, not never. A trust boundary nobody named is
+   a trust boundary nobody validates.
 7. **Nothing sensitive in logs.** No PII, tokens, credentials, or request bodies in log
    output. Strip debug logging from production paths before calling anything done.
 8. **Verify everything you import - packages and APIs alike.** Every dependency exists
-   on its official registry before it's added (AI fabricates plausible package names;
-   attackers register them), versions are pinned, and the lockfile is committed. Prefer
-   few dependencies over many. The same skepticism applies to framework, SDK, and cloud
-   APIs: when unsure a method exists, check the docs instead of trusting memory - AI
-   invents method signatures as readily as package names.
+   on its official registry before it's added, versions are pinned, and the lockfile is
+   committed. Models invent plausible package names - a USENIX Security 2025 study of
+   576,000 code samples found 5.2% of packages suggested by commercial models and 21.7%
+   by open-source models didn't exist - and attackers register those names
+   ("slopsquatting"). Prefer few dependencies over many. The same skepticism applies to
+   framework, SDK, and cloud APIs: when unsure a method exists, check the docs instead
+   of trusting memory.
 9. **Confirm before consequences.** Stop and ask before: destructive actions (dropping
    tables, deleting files, force-pushing), schema changes to existing data, anything
    that costs money, and anything touching production.
 10. **Keep the REGRESSIONS.md loop.** Log every real bug fixed - one line: symptom,
-    cause, fix. Re-read it at the start of every session. AI repeats its own bugs across
-    sessions; this file is the memory that stops it.
+    cause, fix. Re-read it at the start of every session. A new session doesn't remember
+    what the last one fixed; this file is that memory.
 11. **Accessibility basics.** Semantic HTML, keyboard operability, visible focus,
     sufficient contrast, labeled inputs, alt text, no color-only signals, respect
     `prefers-reduced-motion`. Nearly free at generation time, miserable to retrofit.
@@ -120,8 +126,9 @@ these down.
 ## Step 3: Build with the tier's discipline
 
 The tier file defines build behavior, testing depth, docs, and audit cadence. Two habits
-apply at every size because they counter context decay - the documented root cause of
-architecture drift in long AI sessions:
+apply at every size because they counter context decay. Model performance shifts as
+input grows (Chroma's 2025 "Context Rot" study tested 18 models), so rules set early in a
+long session lose force late in it - that's where architecture drift starts:
 
 - **Session start:** re-read REGRESSIONS.md, plus whatever orientation docs the tier
   requires (Medium: the declared pattern; Large: ARCHITECTURE.md and the decision log).

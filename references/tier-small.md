@@ -23,9 +23,10 @@ threat to quality. The discipline isn't adding rigor; it's saying no.
   condition the code path makes impossible is noise wearing a safety vest. When adding a
   check, be able to name the input that triggers it.
 - **Comments explain why, never what.** Delete comments that narrate the line below them.
-- **Refactor as you go.** If a file is turning into a junk drawer, split it now - linear
-  growth without refactoring is the most common AI structural failure, and it starts
-  small.
+- **Refactor as you go.** If a file is turning into a junk drawer, split it now. AI-era
+  code skews toward adding over reorganizing: GitClear's 2025 analysis of 211 million
+  changed lines found 2024 was the first year copy/pasted lines outnumbered moved
+  (refactored) ones. It starts small.
 
 ## UI / UX (if it has a UI)
 

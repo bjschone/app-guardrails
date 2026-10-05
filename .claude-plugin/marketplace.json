@@ -1,0 +1,20 @@
+{
+  "name": "bjschone",
+  "owner": {
+    "name": "B.J. Schone",
+    "url": "https://github.com/bjschone"
+  },
+  "metadata": {
+    "description": "Claude skills by B.J. Schone",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "app-guardrails",
+      "description": "Size a build up front, hold a security floor at every size, and audit on a cadence that matches the stakes.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./"]
+    }
+  ]
+}

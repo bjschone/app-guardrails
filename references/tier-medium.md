@@ -47,8 +47,8 @@ mostly about making early decisions durable.
   double-charge or duplicate records - use idempotency keys or natural deduplication.
   Networks retry; design for it.
 - **Time is UTC internally, ISO-8601 at the edges,** converted to local only at
-  presentation. Never compare formatted date strings - AI does this constantly and the
-  bug hides until a timezone boundary finds it.
+  presentation. Never compare formatted date strings - the bug hides until a timezone
+  boundary finds it.
 - **Minimum operability:** a health endpoint, structured logs in one machine-parseable
   format, and automated backups for any data users would miss - with one restore
   actually tested before the backups are trusted. Untested backups are a hope, not a
@@ -56,8 +56,8 @@ mostly about making early decisions durable.
 - **If the app accepts file uploads:** validate MIME type server-side, enforce size
   limits, generate random filenames, never trust the extension, and store files outside
   the web root. Uploads are the front door AI forgets to lock.
-- **Apply security patches promptly** once compatibility is verified - AI pins versions
-  that were current at its training cutoff and never looks back.
+- **Apply security patches promptly** once compatibility is verified - a model suggests
+  versions from its training data, which are already stale the day it ships.
 
 ## UI / UX
 
@@ -72,8 +72,7 @@ strength of automated checks alone - say what was and wasn't actually tested.
 
 - **Behavioral tests on core flows** - tests that assert specific outcomes ("submitting
   valid signup creates a user and returns 201"), not tests that merely confirm functions
-  run without throwing. A high test count with no real assertions is a documented AI
-  pattern; it's coverage theater.
+  run without throwing. A high test count with no real assertions is coverage theater.
 - For every function that processes a collection, cover the three cases AI reliably
   misses: empty, null/missing, single item.
 - Bug fixes get a regression test alongside the REGRESSIONS.md entry.
