@@ -5,9 +5,11 @@ maintained by people who weren't in the room. Everything in Medium applies. Larg
 what "professional grade" actually means in practice: architecture that survives long AI
 sessions, tested-not-hoped correctness, transaction safety, and handoff-grade docs.
 
-Two risks define this tier. First, **iteration itself becomes a threat**: peer-reviewed
-research measured a 37.6% increase in critical vulnerabilities after just five AI
-refinement cycles, because "improvements" quietly remove validation, relax types, and
+Two risks define this tier. First, **iteration itself becomes a threat**: a peer-reviewed
+study (Shukla et al., IEEE-ISTAS 2025) measured 37.6% more critical vulnerabilities after
+five rounds of AI "improvement" with no human review between rounds. It tested one model
+(GPT-4o) on C and Java, so treat the number as a warning, not a constant - but the
+mechanism is easy to see: "improvements" quietly remove validation, relax types, and
 widen scopes. Second, **the maintainer isn't you**: every shortcut that's fine when the
 author holds the context becomes a trap for the next developer.
 
@@ -74,8 +76,8 @@ author holds the context becomes a trap for the next developer.
   mirror the code's own assumptions back at it. When a test only restates what the
   implementation does, it validates nothing.
 - **Security regression tests.** Every security finding that gets fixed gets a test
-  that fails if it comes back - the executable version of REGRESSIONS.md, aimed at the
-  37.6% problem.
+  that fails if it comes back - the executable version of REGRESSIONS.md, aimed at
+  iteration drift.
 - **Fuzz or property-test anything that parses untrusted formats** - file imports,
   webhook payloads, query strings with structure. Parsers are where malformed input
   becomes remote code execution.

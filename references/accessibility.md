@@ -243,8 +243,8 @@ The realistic test matrix for an AA project, in priority order:
 1. **Keyboard only** - no mouse, no trackpad. Tab, Shift+Tab, Enter, Space, arrow keys,
    Escape.
 2. **macOS VoiceOver + Safari** - Cmd+F5 to toggle.
-3. **Windows NVDA + Firefox or Chrome** - free, the most common screen reader for
-   testing.
+3. **Windows NVDA + Firefox or Chrome** - free, and the most commonly used screen
+   reader in WebAIM's 2024 survey (65.6% of respondents use it).
 4. **iOS VoiceOver on Safari** - for any responsive/mobile flow.
 5. **TalkBack on Chrome (Android)** - for Android-targeted flows.
 6. **200% browser zoom** in Chrome or Firefox.
@@ -256,8 +256,9 @@ task report and provide a manual test checklist for the user to run.
 
 ## 13. Tooling and Verification
 
-- **Automated checks** are necessary but not sufficient. They catch ~30-40% of WCAG
-  issues. Required tools:
+- **Automated checks** are necessary but not sufficient. Deque's 2021 study of 2,000+
+  audits found automated testing caught 57% of issues by volume - and a much smaller
+  share of WCAG success criteria can be tested automatically at all. Required tools:
   - **axe-core** (via `@axe-core/react`, `@axe-core/playwright`, or the **axe
     DevTools** browser extension) on every page in CI.
   - **Lighthouse** accessibility audit (Chrome DevTools or CI). Score ≥ 95 is the
