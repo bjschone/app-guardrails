@@ -35,6 +35,13 @@ Recommend a size, state which axis drove it, and let the user confirm or overrid
 Their override wins. If they invoked a size explicitly ("build this small"), skip the audience
 and stakes questions but still confirm data sensitivity in one line.
 
+**If a spec already sized it, confirm instead of re-asking.** Before asking anything,
+check the repo for a PROJECT.md, README, or other spec with a Sizing section that records
+the three answers. If one exists, restate the answers, the size, the axis that drove
+it, and any data-only bump in one message, and ask the user to confirm or correct.
+Name the data answer explicitly in that message - it's still the trap. If they
+correct anything, update the spec before building so it stays the source of truth.
+
 Then read the matching tier file:
 
 - **Small** → `references/tier-small.md`
