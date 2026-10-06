@@ -42,6 +42,7 @@ You don't need to call it by name. It triggers when you:
 - **Start a build** - "Let's build a habit tracker for my family." Claude asks three sizing questions, recommends a size, names the axis that drove it, and waits for you to confirm.
 - **Name a size** - "Build this small." Claude skips audience and stakes but still asks whether any sensitive data is involved.
 - **Ask for a check** - "Audit this before I send it to the client." Claude runs the audit that matches the project's size and reports findings by severity.
+- **Bring a spec** - If the repo has a `PROJECT.md` or README with a Sizing section that records the three answers, Claude restates them and asks you to confirm instead of asking again.
 - **Come back to a project** - Claude re-reads `REGRESSIONS.md` and the project's orientation docs before writing code.
 
 You can also invoke it directly with `/app-guardrails` in Claude Code.
