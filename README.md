@@ -1,10 +1,12 @@
-# App Guardrails
+# [![App Guardrails](assets/app-guardrails-banner.png)](assets/app-guardrails-infographic.png)
 
 A Claude skill for building apps at the right level of rigor - no more, no less.
 
 You size the project once, before any code gets written. Then the skill holds a security floor that never drops, whatever the size. A weekend game gets a 20-minute audit. A client build with payments gets six audit passes. Both get the same eleven non-negotiables.
 
 I built this because AI-generated code fails in predictable ways: swallowed async errors, hardcoded secrets, missing ownership checks, packages that don't exist, and architecture that drifts as a long session wears on. I've used it on every project I've built with Claude since. It hasn't let me down, and it means every project starts with good bones.
+
+Want the whole picture first? See the [full infographic](assets/app-guardrails-infographic.png).
 
 ## Install
 
