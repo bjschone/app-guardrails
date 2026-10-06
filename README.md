@@ -12,10 +12,14 @@ Want the whole picture first? See the [full infographic](assets/app-guardrails-i
 
 ### Claude Code (plugin)
 
+Run these inside a Claude Code session, not your terminal. Start `claude` first, then type:
+
 ```
 /plugin marketplace add bjschone/app-guardrails
 /plugin install app-guardrails@bjschone
 ```
+
+Pick user scope when asked so the skill is on in every repo. Start a new session afterward to load it.
 
 ### Claude Code (personal skill)
 
